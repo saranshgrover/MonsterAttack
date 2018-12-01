@@ -1,2 +1,5 @@
+import map.py
+import player.py
 
-# Hehe xd
+class Game:
+    def __init__(self, Map, Player):
