@@ -78,6 +78,8 @@ class Game:
                 return -1
         else:
             return -1
+
+    # Part 7
     def complete_attack(self, map, player,row,col):
         target_cell = self.get_cell(map,row,col)
         if target_cell == 'm':
@@ -91,6 +93,8 @@ class Game:
         if player.player_health <= 0:
             self.set_cell(map,player.row,player.col,'X')
         return
+
+    # Part 8
     def monster_attacks(self,map,player):
         counter = 0
         row = player.row
@@ -125,3 +129,43 @@ class Game:
         elif cell == 'B':
             counter += 2
         return counter
+
+    # Part 9
+    def player_move(self, map, player, row, col):
+        dmgTaken = self.monster_attacks(map, player)
+        player.player_health -= dmgTaken
+        if player.player_health <= 0:
+            player.char = 'X'
+            return 0
+        targetCell = self.get_cell(map, row, col)
+        if targetCell.char == '.':
+            temp = player
+            player = Cell(player.row, player.col, '.', True)
+            targetCell = temp
+        elif targetCell.char == '$':
+            temp = player
+            player = Cell(player.row, player.col, '.', True)
+            targetCell = temp
+            temp.coins += 1
+        elif targetCell.char == '*':
+            temp = player
+            player = Cell(player.row, player.col, '.', True)
+            targetCell = temp
+            temp.coins += 5
+        elif targetCell.char == '>':
+            temp = player
+            player = Cell(player.row, player.col, '.', True)
+            targetCell = temp
+            player.row = row
+            player.col = col
+            return -1
+        player.row = row
+        player.col = col
+        return 0
+
+    # Part 10
+    def player_turn(self, map, player, direction):
+        targetCol = player.col
+        targetRow = player.row
+        if direction == "U":
+            targetRow -= 1
