@@ -2,14 +2,9 @@ from cell import Cell
 
 class Player(Cell):
     player_health = -1
-    row = -1
-    col = -1
     coins = -1
-    map
 
-    def __init__(self, row, col, health, coins, Map):
-        self.row = row
-        self.player_health = health
-        self.col = col
+    def __init__(self, row, col, coins, player_health):
+        Cell.__init__(row, col, '@', True)
+        self.player_health = player_health
         self.coins = coins
-        self.map = Map
