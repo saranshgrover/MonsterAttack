@@ -58,4 +58,70 @@ class Game:
 
     # Part 6
     def get_attack_target(self, map, player, direction):
-
+        row = player.Row
+        col = player.Col
+        if direction == 'U':
+            row -= 1
+        elif direction == 'D':
+            row += 1
+        elif direction == 'L':
+            col -= 1
+        elif direction == 'R':
+            col += 1
+        else:
+            return -1
+        if self.is_valid_cell(map,row,col):
+            attack_target = map.Grid[row][col].char
+            if attack_target == 'm' or attack_target == 'B' or attack_target == '/'
+                return attack_target
+            else:
+                return -1
+        else:
+            return -1
+    def complete_attack(self, map, player,row,col):
+        target_cell = self.get_cell(map,row,col)
+        if target_cell == 'm':
+            self.set_cell(map,row,col,'$')
+            player.player_health -= 1
+        elif target_cell == 'B':
+            self.set_cell(map, row, col, '*')
+            player.player_health -= 2
+        elif target_cell == '/':
+            self.set_cell(map, row, col, '.')
+        if player.player_health <= 0:
+            self.set_cell(map,player.row,player.col,'X')
+        return
+    def monster_attacks(self,map,player):
+        counter = 0
+        row = player.row
+        col = player.col
+        # R-1,C
+        row-=1
+        cell = self.get_cell(map,row,col)
+        if cell == 'm':
+            counter += 1
+        elif cell == 'B':
+            counter += 2
+        # R-1,C
+        row += 2
+        cell = self.get_cell(map, row, col)
+        if cell == 'm':
+            counter += 1
+        elif cell == 'B':
+            counter += 2
+        # R,C-1
+        row-=1
+        col-=1
+        cell = self.get_cell(map,row,col)
+        if cell == 'm':
+            counter += 1
+        elif cell == 'B':
+            counter += 2
+        # R,C+1
+        col += 2
+        cell = self.get_cell(map, row, col)
+        if cell == 'm':
+            counter += 1
+        elif cell == 'B':
+            counter += 2
+        return counter
