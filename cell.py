@@ -13,3 +13,6 @@ class Cell():
 
     def isVisible(self):
         return self.visible
+
+    def makeVisible(self):
+        self.visible = True

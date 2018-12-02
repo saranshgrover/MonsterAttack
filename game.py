@@ -30,4 +30,32 @@ class Game:
     # Part 4
     def set_cell(self, map, row, col, char):
         if self.is_valid_cell(map, row, col):
-            temp = map.Grid[row][col]
+            map.Grid[row][col].char = char
+
+    # Part 5
+    def reveal_area(self, map, row, col):
+        row -= 1
+        col -= 1
+        map.Grid[row][col].makeVisible()
+        col += 1
+        map.Grid[row][col].makeVisible()
+        col += 1
+        map.Grid[row][col].makeVisible()
+        row += 1
+        col -= 2
+        map.Grid[row][col].makeVisible()
+        col += 1
+        map.Grid[row][col].makeVisible()
+        col += 1
+        map.Grid[row][col].makeVisible()
+        row += 1
+        col -= 2
+        map.Grid[row][col].makeVisible()
+        col += 1
+        map.Grid[row][col].makeVisible()
+        col += 1
+        map.Grid[row][col].makeVisible()
+
+    # Part 6
+    def get_attack_target(self, map, player, direction):
+
