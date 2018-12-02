@@ -1,4 +1,6 @@
-class Player():
+from cell import Cell
+
+class Player(Cell):
     player_health = -1
     row = -1
     col = -1

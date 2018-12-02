@@ -1,3 +1,6 @@
+from cell import Cell
+from player import Player
+
 class Map():
     File = ''
     Row = 0
@@ -16,7 +19,12 @@ class Map():
             if j >= self.Col:
                 j = 0
                 i += 1
-            Grid[i][j] = char
+            if char == '@':
+                newPlayer = # TODO
+                newCell = Cell(i, j, char, True)
+            else:
+                newCell = Cell(i, j, char, False)
+            Grid[i][j] =
             j += 1
 
 

@@ -1,5 +1,5 @@
-import map.py
-import player.py
+from map import Map
+from player import Player
 
 class Game:
     # Part 1
@@ -28,4 +28,4 @@ class Game:
 
     # Part 4
     def set_cell(map, row, col, char):
-        # TODO: Finish part 4
+        # TODO
