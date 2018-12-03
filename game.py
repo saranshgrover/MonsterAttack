@@ -1,11 +1,15 @@
+import player
 from map import Map
 from player import Player
 from cell import Cell
 
 class Game:
-    # Part 1
-    def __init__(self, Map, Player):
 
+    map
+    player
+    # Part 1
+    def __init__(self, Filename):
+        self.map = Map(Filename)
     # Part 2
     def is_valid_cell(self, map, row, col):
         map_row = map.Row
@@ -72,7 +76,7 @@ class Game:
             return -1
         if self.is_valid_cell(map,row,col):
             attack_target = map.Grid[row][col].char
-            if attack_target == 'm' or attack_target == 'B' or attack_target == '/'
+            if attack_target == 'm' or attack_target == 'B' or attack_target == '/':
                 return attack_target
             else:
                 return -1
@@ -165,7 +169,28 @@ class Game:
 
     # Part 10
     def player_turn(self, map, player, direction):
-        targetCol = player.col
         targetRow = player.row
+        targetCol = player.col
         if direction == "U":
             targetRow -= 1
+        elif direction == "D":
+            targetRow += 1
+        elif direction == "L":
+            targetCol -= 1
+        elif direction == "R":
+            targetCol += 1
+        else:
+            return -1
+        cell = self.get_cell(map, targetRow, targetCol)
+        if not cell:
+            return 0
+        else:
+            attackable = self.get_attack_target(map, player, direction)
+            if cell.char == '#':
+                return 0
+            elif attackable == 'B' or attackable == 'm':
+                self.complete_attack(map, player, targetRow, targetCol)
+                return 0
+            else:
+                return self.player_move(map, player, targetRow, targetCol)
+
