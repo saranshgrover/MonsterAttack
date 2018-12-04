@@ -6,8 +6,8 @@ class Map():
     Row = 0
     Col = 0
     player_health = coins = -1
-    Grid = [[]]
     player = Player(0,0,0,0)
+    Grid = None
 
     def __init__(self, File):
         self.file = File
@@ -16,19 +16,20 @@ class Map():
         self.Col = int(file_object.readline())
         self.player_health = int(file_object.readline())
         self.coins = int(file_object.readline())
-        Grid = [[0 for x in range(self.Row)] for y in range(self.Col)]
+        Grid = [[0 for x in range(self.Col)] for y in range(self.Row)]
         contents = file_object.read()
-        i = j = 0
-        for char in contents:
-            if j >= self.Col:
-                j = 0
-                i += 1
-            if char == '@':
-                self.player = Player(i, j, self.player_health, self.coins)
-                Grid.insert([i][j],self.player)
-            else:
-                Grid.insert([i][j], Cell(i, j, char, False))
-            j += 1
+        counter = 0
+        for i in range(self.Row):
+            for j in range(self.Col):
+                print(i)
+                print(j)
+                if contents[counter] == '@':
+                    self.player = Player(i, j, self.player_health, self.coins)
+                    Grid[i][j] = self.player
+                else:
+                    Grid[i][j] = Cell(i, j, contents[counter], False)
+
+
 
 
 
