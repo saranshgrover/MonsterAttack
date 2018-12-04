@@ -5,7 +5,7 @@ class Cell():
     char = ""
     visible = False
 
-    def __init__(self, row, col, char, visible):
+    def __init__(self, row, col, char, visible= False):
         self.row = row
         self.col = col
         self.char = char

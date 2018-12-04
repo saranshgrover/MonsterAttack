@@ -5,8 +5,9 @@ class Map():
     File = ''
     Row = 0
     Col = 0
-    player_health, coins = -1
+    player_health = coins = -1
     Grid = [[]]
+    player = Player(0,0,0,0)
 
     def __init__(self, File):
         self.file = File
@@ -23,9 +24,10 @@ class Map():
                 j = 0
                 i += 1
             if char == '@':
-                Grid[i][j] = Player(i, j, self.player_health, self.coins)
+                self.player = Player(i, j, self.player_health, self.coins)
+                Grid.insert([i][j],self.player)
             else:
-                Grid[i][j] = Cell(i, j, char, False)
+                Grid.insert([i][j], Cell(i, j, char, False))
             j += 1
 
 

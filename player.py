@@ -5,6 +5,6 @@ class Player(Cell):
     coins = -1
 
     def __init__(self, row, col, coins, player_health):
-        Cell.__init__(row, col, '@', True)
+        super(Player, self).__init__(row,col,'@',visible=True)
         self.player_health = player_health
         self.coins = coins

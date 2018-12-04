@@ -5,11 +5,10 @@ from cell import Cell
 
 class Game:
 
-    map
-    player
-    # Part 1
-    def __init__(self, Filename):
-        self.map = Map(Filename)
+    GameMap = Map("map3.txt")
+
+    def __init__(self, map):
+        self.GameMap = map
     # Part 2
     def is_valid_cell(self, map, row, col):
         map_row = map.Row
