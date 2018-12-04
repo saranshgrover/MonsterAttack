@@ -17,24 +17,19 @@ class Map():
         self.player_health = int(file_object.readline())
         self.coins = int(file_object.readline())
         Grid = [[0 for x in range(self.Col)] for y in range(self.Row)]
-        contents = file_object.read()
-        counter = 0
+        contents = file_object.read().splitlines()
         for i in range(self.Row):
-            for j in range(self.Col + 2):
-                print("{} {}: {}".format(i, j, contents[counter]))
-                if contents[counter] == '\n' or contents[counter] == '\r':
-                    counter += 1
-                elif contents[counter] == '@':
-                    #print(contents[counter])
-                    #print(i)
-                    #print(j)
+            for j in range(self.Col):
+                #print("{} {}: {}".format(i, j, contents[i][j]))
+                if contents[i][j] == '@':
+                    print(contents[i][j])
+                    print(i)
+                    print(j)
                     self.player = Player(i, j, self.player_health, self.coins)
                     Grid[i][j] = self.player
-                    counter += 1
                 else:
                     #print(contents[counter])
-                    Grid[i][j] = Cell(i, j, contents[counter], False)
-                    counter += 1
+                    Grid[i][j] = Cell(i, j, contents[i][j], False)
 
 
 
