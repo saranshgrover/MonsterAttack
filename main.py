@@ -6,7 +6,7 @@ from player import Player
 print("Welcome to Monster Attacks!")
 filename = "map3.txt"
 GameMap = Map("map3.txt")
-Game = Game(GameMap)
+Game = Game()
 Game.reveal_area(GameMap, GameMap.player.row, GameMap.player.col)
 move = 0
 
