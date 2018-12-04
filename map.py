@@ -21,7 +21,7 @@ class Map():
         counter = 0
         for i in range(self.Row):
             for j in range(self.Col + 2):
-                print("{} {}: {}".format(i ,j, contents[counter]))
+                print("{} {}: {}".format(i, j, contents[counter]))
                 if contents[counter] == '\n' or contents[counter] == '\r':
                     counter += 1
                 elif contents[counter] == '@':
