@@ -7,7 +7,7 @@ class Map():
     Col = 0
     player_health = coins = -1
     player = Player(0,0,0,0)
-    Grid = None
+    Grid = [[]]
 
     def __init__(self, File):
         self.file = File
@@ -18,17 +18,21 @@ class Map():
         self.coins = int(file_object.readline())
         Grid = [[0 for x in range(self.Col)] for y in range(self.Row)]
         contents = file_object.read()
+        print(contents[0] + " test")
         counter = 0
         for i in range(self.Row):
-            for j in range(self.Col):
-                print(i)
-                print(j)
-                if contents[counter] == '@':
+            for j in range(self.Col + 2):
+                print(contents[counter])
+                if contents[counter] == '\n' or '\r':
+                    counter += 1
+                elif contents[counter] == '@':
                     self.player = Player(i, j, self.player_health, self.coins)
                     Grid[i][j] = self.player
+                    print(i)
+                    print(j)
                 else:
                     Grid[i][j] = Cell(i, j, contents[counter], False)
-
+                counter += 1
 
 
 
