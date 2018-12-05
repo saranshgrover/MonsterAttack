@@ -20,9 +20,9 @@ def print_map():
         print()
 
 def print_player_info():
-    print("Hi! Player Health = " and GameMap.player.player_health and " and Coins = " and GameMap.player.coins)
+    print("Hi! Player Health = {} and Coins = {}".format(GameMap.player.player_health, GameMap.player.coins))
 
-while GameMap.player_health > 0 and move ==0:
+while GameMap.player.player_health > 0 and move == 0:
     print_map()
     print_player_info()
     char = input()
@@ -46,6 +46,6 @@ else:
     if GameMap.player.player_health <=0:
         print("You died")
     else:
-        print("you failed")
+        print("You failed")
 print_player_info()
 

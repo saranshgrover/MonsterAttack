@@ -30,6 +30,7 @@ class Game:
     def set_cell(self, map, row, col, char):
         if self.is_valid_cell(map, row, col):
             map.Grid[row][col].char = char
+            # TODO: This function sets the char, rather than a cell object
 
     # Part 5
     def reveal_area(self, map, row, col):
@@ -57,8 +58,8 @@ class Game:
 
     # Part 6
     def get_attack_target(self, map, player, direction):
-        row = player.Row
-        col = player.Col
+        row = player.row
+        col = player.col
         if direction == 'U':
             row -= 1
         elif direction == 'D':
@@ -139,8 +140,10 @@ class Game:
         targetCell = self.get_cell(map, row, col)
         if targetCell.char == '.':
             temp = player
-            player = Cell(player.row, player.col, '.', True)
+            self.set_cell(map, player.row, player.col, '.')
+            #player = Cell(player.row, player.col, '.', True)
             targetCell = temp
+            # TODO: This function needs to be fixed
         elif targetCell.char == '$':
             temp = player
             player = Cell(player.row, player.col, '.', True)
