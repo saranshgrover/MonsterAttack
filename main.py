@@ -10,19 +10,17 @@ Game = Game()
 Game.reveal_area(GameMap, GameMap.player.row, GameMap.player.col)
 move = 0
 
-def print_map(cell_grid):
-    for cell in cell_grid:
-        if cell.visible:
-            print(cell.char)
-        else:
-            print(" ")
-    print("\n")
-    return
+def print_map():
+    for row in GameMap.Grid:
+        for cell in row:
+            if cell.visible:
+                print(cell.char, end="")
+            else:
+                print(" ", end="")
+        print()
 
 def print_player_info():
     print("Hi! Player Health = " and GameMap.player.player_health and " and Coins = " and GameMap.player.coins)
-
-
 
 while GameMap.player_health > 0 and move ==0:
     print_map()
@@ -31,7 +29,7 @@ while GameMap.player_health > 0 and move ==0:
     move = 0
     if char == 'w':
         move = Game.player_turn(GameMap, GameMap.player, 'U')
-    elif char =='a':
+    elif char == 'a':
         move = Game.player_turn(GameMap, GameMap.player, 'L')
     elif char == 's':
         move = Game.player_turn(GameMap, GameMap.player, 'D')
