@@ -139,10 +139,22 @@ class Game:
             return 0
         targetCell = self.get_cell(map, row, col)
         if targetCell.char == '.':
+            #
             temp = player
-            self.set_cell(map, player.row, player.col, '.')
+            tempTargetRow = row
+            tempTargetCol = col
+            print(player.row)
+            print(player.col)
+            map.Grid[player.row][player.col] = Cell(player.row, player.col, '.', True)
+            map.Grid[row][col] = temp
+            map.Grid[row][col].row = tempTargetRow
+            map.Grid[row][col].col = tempTargetCol
+            #
+
+            #temp = player
+            #self.set_cell(map, player.row, player.col, '.')
             #player = Cell(player.row, player.col, '.', True)
-            targetCell = temp
+            #targetCell = temp
             # TODO: This function needs to be fixed
         elif targetCell.char == '$':
             temp = player

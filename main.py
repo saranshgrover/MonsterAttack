@@ -1,3 +1,5 @@
+import sys
+
 from game import Game
 from map import Map
 from cell import Cell
@@ -35,6 +37,9 @@ while GameMap.player.player_health > 0 and move == 0:
         move = Game.player_turn(GameMap, GameMap.player, 'D')
     elif char == 'd':
         move = Game.player_turn(GameMap, GameMap.player, 'R')
+    else:
+        print("Illegal character entered: ", end="")
+        print(char)
     if move == 0:
         Game.reveal_area(GameMap, GameMap.player.row, GameMap.player.col)
 
